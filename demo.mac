@@ -1,0 +1,5 @@
+import profile;
+
+profiler_mod_start("demo_profile");
+println("demo_profile");
+profiler_end;

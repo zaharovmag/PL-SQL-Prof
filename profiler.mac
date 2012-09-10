@@ -1,0 +1,42 @@
+import RSD;
+
+MACRO profiler_start(mod_name,mod_type)
+var cmd;
+
+    cmd = RsdCommand(RslDefCon);
+    if(mod_type == 0) 
+    	 cmd = RSDCommand(NULL,"call rsb_profiler.profiler_start(?,0)");
+    
+    end;
+
+    if(mod_type == 1)
+    	 cmd = RSDCommand(NULL,"call rsb_profiler.profiler_start(?,1)");
+    end;
+
+    cmd.addparam("mod_name",RSDBP_IN,mod_name);
+       
+    cmd.execute;
+
+end;
+
+
+MACRO profiler_mod_start(mod_name)
+      profiler_start(mod_name,0);
+end;
+
+
+
+MACRO profiler_func_start(mod_name)
+      profiler_start(mod_name,1);
+end;
+
+
+
+MACRO profiler_end
+var cmd;
+
+    cmd = RsdCommand(RslDefCon);
+    cmd.cmdtext = "call rsb_profiler.profiler_end()";
+
+    cmd.Execute;    
+end;
